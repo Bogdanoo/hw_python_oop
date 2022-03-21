@@ -30,7 +30,7 @@ class Training:
                  action: int,
                  duration: float,
                  weight: float
-                ) -> None:
+                 ) -> None:
         self.action = action
         self.duration = duration
         self.weight = weight
@@ -79,7 +79,7 @@ class SportsWalking(Training):
     COEFF_WALK_2 = 2
     COEFF_WALK_3 = 0.029
     TRAINING_TYPE = 'WLK'
- 
+
     def __init__(self,
                  action: int,
                  duration: float,
