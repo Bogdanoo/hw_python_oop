@@ -1,5 +1,6 @@
-from typing import Dict, List, Type
-from dataclasses import asdict, dataclass
+from typing import Dict, List
+from dataclasses import dataclass
+
 
 @dataclass
 class InfoMessage:
@@ -47,10 +48,10 @@ class Training:
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(self.__class__.__name__,
-                             self.duration,
-                             self.get_distance(),
-                             self.get_mean_speed(),
-                             self.get_spent_calories())
+                            self.duration,
+                            self.get_distance(),
+                            self.get_mean_speed(),
+                            self.get_spent_calories())
 
 
 class Running(Training):
@@ -68,7 +69,7 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     COEFF_WALK_1: float = 0.035
-    COEFF_WALK_2: float= 2
+    COEFF_WALK_2: float = 2
     COEFF_WALK_3: float = 0.029
     TRAINING_TYPE: str = 'WLK'
 
@@ -116,8 +117,8 @@ class Swimming(Training):
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     workout_types: Dict[str, Training] = {'SWM': Swimming,
-    'RUN': Running,
-    'WLK': SportsWalking}
+        'RUN': Running,
+        'WLK': SportsWalking}
     return workout_types[workout_type](*data)
 
 
