@@ -120,7 +120,7 @@ def read_package(workout_type: str, data: List[int]) -> Training:
         'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
     if workout_type not in workout_types:
         raise ValueError('Укажите правильный вид тренировки: '
-        f'{workout_types.keys()}')
+                     f'{workout_types.keys()}')
     return workout_types[workout_type](*data)
 
 
