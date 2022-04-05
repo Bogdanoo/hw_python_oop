@@ -107,7 +107,7 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         return self.length_pool * self.count_pool / \
-        Swimming.M_IN_KM / self.duration
+            Swimming.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
         return (self.get_mean_speed() + self.COEFF_SWIM_1) \
@@ -120,7 +120,7 @@ def read_package(workout_type: str, data: List[int]) -> Training:
         'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
     if workout_type not in workout_types:
         raise ValueError('Укажите правильный вид тренировки: '
-            f'{workout_types.keys()}')
+             f'{workout_types.keys()}')
     return workout_types[workout_type](*data)
 
 
