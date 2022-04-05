@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Type
 from dataclasses import dataclass
 
 
@@ -60,6 +60,7 @@ class Running(Training):
     COEFF_RUN_1: int = 18
     COEFF_RUN_2: int = 20
     MIN_IN_HOUR: int = 60
+
     def get_spent_calories(self) -> float:
         calories1 = self.COEFF_RUN_1 * self.get_mean_speed() - self.COEFF_RUN_2
         calories2 = calories1 * self.weight
@@ -72,6 +73,7 @@ class SportsWalking(Training):
     COEFF_WALK_2: int = 2
     COEFF_WALK_3: float = 0.029
     MIN_IN_HOUR: int = 60
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -104,10 +106,12 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        return self.length_pool * self.count_pool / Swimming.M_IN_KM / self.duration
+        return self.length_pool * self.count_pool / \
+        Swimming.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
-        return (self.get_mean_speed() + self.COEFF_SWIM_1) * self.COEFF_SWIM_2 * self.weight
+        return (self.get_mean_speed() + self.COEFF_SWIM_1) \
+             * self.COEFF_SWIM_2 * self.weight
 
 
 def read_package(workout_type: str, data: List[int]) -> Training:
@@ -115,8 +119,8 @@ def read_package(workout_type: str, data: List[int]) -> Training:
     workout_types: Dict[str, Type[Training]] = {
         'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
     if workout_type not in workout_types:
-        raise ValueError('Укажите правильный вид тренировки: '
-                     f'{workout_types.keys()}')
+        raise ValueError('Укажите правильный вид тренировки: ' \
+                    f'{workout_types.keys()}')
     return workout_types[workout_type](*data)
 
 
@@ -124,6 +128,7 @@ def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
+
 
 if __name__ == '__main__':
     packages = [
