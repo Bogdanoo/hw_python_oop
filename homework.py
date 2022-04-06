@@ -23,6 +23,7 @@ class Training:
     """Базовый класс тренировки."""
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
+    MIN_IN_HOUR: int = 60
 
     def __init__(self,
                  action: int,
@@ -59,7 +60,6 @@ class Running(Training):
     """Тренировка: бег."""
     COEFF_RUN_1: int = 18
     COEFF_RUN_2: int = 20
-    MIN_IN_HOUR: int = 60
 
     def get_spent_calories(self) -> float:
         calories1 = self.COEFF_RUN_1 * self.get_mean_speed() - self.COEFF_RUN_2
@@ -106,12 +106,16 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        return self.length_pool * self.count_pool / \
-            Swimming.M_IN_KM / self.duration
+        return (self.length_pool
+                * self.count_pool
+                / Swimming.M_IN_KM
+                / self.duration)
 
     def get_spent_calories(self) -> float:
-        return (self.get_mean_speed() + self.COEFF_SWIM_1) \
-            * self.COEFF_SWIM_2 * self.weight
+        return ((self.get_mean_speed()
+                + self.COEFF_SWIM_1)
+                * self.COEFF_SWIM_2
+                * self.weight)
 
 
 def read_package(workout_type: str, data: List[int]) -> Training:
