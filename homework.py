@@ -72,7 +72,6 @@ class SportsWalking(Training):
     COEFF_WALK_1: float = 0.035
     COEFF_WALK_2: int = 2
     COEFF_WALK_3: float = 0.029
-    MIN_IN_HOUR: int = 60
 
     def __init__(self,
                  action: int,
